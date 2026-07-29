@@ -52,3 +52,23 @@ concrete crack renamed/
 Each subdirectory within `train`, `val`, and `test` will contain the respective image files for that class and split.
 
 ```
+## Project Overview
+
+This project aims to build a machine learning model for detecting concrete cracks in various surfaces (walls, pavements, decks). It leverages TensorFlow/Keras for image classification.
+
+## Getting Started
+
+To replicate the environment and data setup:
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/umanahekeobong-cell/Crack-Detector.git
+    cd Crack-Detector
+    ```
+
+2.  **Dataset Preparation:**
+    The dataset (e.g., `archive (1).zip`) should be unzipped into a local directory named `./data`. The notebook will then reorganize this raw data into `train`, `val`, and `test` splits, creating a structured dataset in Google Drive (e.g., `/content/drive/MyDrive/concrete crack renamed/`). This process categorizes images into classes like `Walls_Cracked`, `Pavements_Non-cracked`, etc.
+
+## Data Loading and Preprocessing
+
+*   **Dataset Loading:** Images are loaded efficiently using `tf.keras.utils.image_dataset_from_directory` with specified image dimensions (128x128 pixels) and batch sizes.
