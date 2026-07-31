@@ -41,10 +41,7 @@ import zipfile
 import streamlit as st
 import tensorflow as tf
 
-# 1. Update this to the exact name/path of the ZIP file in your GitHub repo:
-ZIP_FILE_PATH = "models.zip"  # e.g., "models/models.zip" or "models.zip"
-
-# 2. Path where the extracted .keras file will sit after unzipping:
+ZIP_FILE_PATH = "models.zip" 
 EXTRACTED_DIR = "models"
 MODEL_PATH = os.path.join(EXTRACTED_DIR, "mobilenetv3_transfer.keras")
 
@@ -54,14 +51,14 @@ def load_zipped_model():
         with st.spinner("Extracting model file..."):
             with zipfile.ZipFile(ZIP_FILE_PATH, 'r') as zip_ref:
                 zip_ref.extractall(".") 
-                
-    # UPDATE THIS LINE:
-    return tf.keras.models.load_model(
-        MODEL_PATH, 
-        compile=False, 
-        safe_mode=False
-    )
-# Load your model
+
+    # Force Keras to ignore non-standard object errors
+    try:
+        return tf.keras.models.load_model(MODEL_PATH, compile=False, safe_mode=False)
+    except Exception:
+        # Fallback for MobileNetV3 custom depthwise/scaling objects
+        return tf.keras.models.load_model(MODEL_PATH, compile=False, custom_objects=None)
+
 model = load_zipped_model()
 # --- Prediction Function ---
 def predict_image(image, model, class_names, image_size=(128, 128)):
