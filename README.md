@@ -29,3 +29,32 @@ The core underlying engine utilizes a fine-tuned **MobileNetV3** model trained v
 ├── app.py                            # Streamlit web application script
 ├── requirements.txt                  # Environment dependencies
 └── README.md                         # Project documentation
+📦 Installation & Local Setup
+1. Clone the Repository
+Bash
+git clone [https://github.com/umanahekeobong-cell/Fresh-Apple-vs-Formalin-mixed-Apple.git](https://github.com/umanahekeobong-cell/Fresh-Apple-vs-Formalin-mixed-Apple.git)
+cd Fresh-Apple-vs-Formalin-mixed-Apple
+2. Set Up a Virtual Environment (Recommended)
+Bash
+python -m venv venv
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+3. Install Dependencies
+Bash
+pip install -r requirements.txt
+4. Run the Streamlit Application
+Bash
+streamlit run app.py
+🔬 Model Architecture & Training
+Base Architecture: MobileNetV3 (Fine-Tuned via Transfer Learning)
+
+Input Resolution: 128 x 128 pixels (RGB)
+
+Preprocessing: MobileNetV3 standard input scaling ([-1, 1])
+
+Test Accuracy: 81.60%
+
+📄 License
+This project is open-source and available under the MIT License.
