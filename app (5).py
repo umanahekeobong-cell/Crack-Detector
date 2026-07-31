@@ -36,13 +36,32 @@ print("--- End Debug Info ---", file=sys.stderr)
 
 
 # --- Load Model (Best Performing: MobileNetV3 Fine-Tuned) ---
-try:
-    model = tf.keras.models.load_model(MODEL_PATH)
-except Exception as e:
-    st.error(f"Error loading model: {e}. Please ensure '{MODEL_PATH}' is available in the 'models' directory.")
-    # Also print to stderr if loading fails
-    print(f"MODEL LOAD FAILED: {e}", file=sys.stderr)
-    model = None # Set model to None if loading fails
+import os
+import gdown
+import streamlit as st
+import tensorflow as tf
+
+# Define folder and file path
+MODEL_DIR = "models"
+MODEL_PATH = os.path.join(MODEL_DIR, "mobilenetv3_transfer.keras")
+
+# PASTE YOUR GOOGLE DRIVE FILE ID HERE
+GDRIVE_FILE_ID = "YOUR_FILE_ID_HERE" 
+
+@st.cache_resource
+def load_model_from_drive():
+    if not os.path.exists(MODEL_DIR):
+        os.makedirs(MODEL_DIR)
+        
+    if not os.path.exists(MODEL_PATH):
+        with st.spinner("Downloading model weights..."):
+            url = f"https://drive.google.com/uc?id={GDRIVE_FILE_ID}"
+            gdown.download(url, MODEL_PATH, quiet=False)
+            
+    return tf.keras.models.load_model(MODEL_PATH)
+
+# Load your model
+model = load_model_from_drive()
 
 # --- Prediction Function ---
 def predict_image(image, model, class_names, image_size=(128, 128)):
