@@ -4,4 +4,3 @@ tensorflow
 numpy
 scikit-learn
 pandas
-gdown
