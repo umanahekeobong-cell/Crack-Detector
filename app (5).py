@@ -37,32 +37,29 @@ print("--- End Debug Info ---", file=sys.stderr)
 
 # --- Load Model (Best Performing: MobileNetV3 Fine-Tuned) ---
 import os
-import gdown
+import zipfile
 import streamlit as st
 import tensorflow as tf
 
-# Define folder and file path
-MODEL_DIR = "models"
-MODEL_PATH = os.path.join(MODEL_DIR, "mobilenetv3_transfer.keras")
+# 1. Update this to the exact name/path of the ZIP file in your GitHub repo:
+ZIP_FILE_PATH = "models.zip"  # e.g., "models/models.zip" or "models.zip"
 
-# PASTE YOUR GOOGLE DRIVE FILE ID HERE
-GDRIVE_FILE_ID = "YOUR_FILE_ID_HERE" 
+# 2. Path where the extracted .keras file will sit after unzipping:
+EXTRACTED_DIR = "models"
+MODEL_PATH = os.path.join(EXTRACTED_DIR, "mobilenetv3_transfer.keras")
 
 @st.cache_resource
-def load_model_from_drive():
-    if not os.path.exists(MODEL_DIR):
-        os.makedirs(MODEL_DIR)
-        
+def load_zipped_model():
+    # Unzip if the .keras file isn't extracted yet
     if not os.path.exists(MODEL_PATH):
-        with st.spinner("Downloading model weights..."):
-            url = f"https://drive.google.com/uc?id={GDRIVE_FILE_ID}"
-            gdown.download(url, MODEL_PATH, quiet=False)
-            
+        with st.spinner("Extracting model file..."):
+            with zipfile.ZipFile(ZIP_FILE_PATH, 'r') as zip_ref:
+                zip_ref.extractall(".")  # Extracts into the repository root directory
+                
     return tf.keras.models.load_model(MODEL_PATH)
 
 # Load your model
-model = load_model_from_drive()
-
+model = load_zipped_model()
 # --- Prediction Function ---
 def predict_image(image, model, class_names, image_size=(128, 128)):
     if model is None:
