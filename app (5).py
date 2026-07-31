@@ -50,14 +50,17 @@ MODEL_PATH = os.path.join(EXTRACTED_DIR, "mobilenetv3_transfer.keras")
 
 @st.cache_resource
 def load_zipped_model():
-    # Unzip if the .keras file isn't extracted yet
     if not os.path.exists(MODEL_PATH):
         with st.spinner("Extracting model file..."):
             with zipfile.ZipFile(ZIP_FILE_PATH, 'r') as zip_ref:
-                zip_ref.extractall(".")  # Extracts into the repository root directory
+                zip_ref.extractall(".") 
                 
-    return tf.keras.models.load_model(MODEL_PATH)
-
+    # UPDATE THIS LINE:
+    return tf.keras.models.load_model(
+        MODEL_PATH, 
+        compile=False, 
+        safe_mode=False
+    )
 # Load your model
 model = load_zipped_model()
 # --- Prediction Function ---
