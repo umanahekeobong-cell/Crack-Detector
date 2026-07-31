@@ -1,0 +1,15 @@
+/content/datasets/applerenamed/test/Apple_Formalin-mixed/6184002721938522283.jpg
+/content/datasets/applerenamed/test/Apple_Formalin-mixed/msg5170347760-70949.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/msg5170347760-69537.jpg
+/content/datasets/applerenamed/test/Apple_Formalin-mixed/msg5170347760-67410.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/msg5170347760-64627.jpg
+/content/datasets/applerenamed/test/Apple_Formalin-mixed/msg5170347760-67382.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/msg5170347760-69587.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/msg5170347760-66158.jpg
+/content/datasets/applerenamed/test/Apple_Formalin-mixed/msg5170347760-71035.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/msg5170347760-66136.jpg
+/content/datasets/applerenamed/test/Apple_Formalin-mixed/msg5170347760-70945.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/msg5170347760-63901.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/msg5170347760-66265.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/IMG-20240612-WA0099.jpg
+/content/datasets/applerenamed/test/Apple_Fresh/msg5170347760-63924.jpg
